@@ -1,0 +1,48 @@
+{
+    "commands": {
+        "!draguin": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1222990414861303818/image.png?ex=66183994&is=6605c494&hm=ad842a222aa59e4aabd497fcf958c2c3978020dc8a6d8606d3710aeb8ac3ee46&"
+          },
+          "!estado": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223362131219579031/KwAAAAASUVORK5CYII.png?ex=661993c5&is=66071ec5&hm=b631258093f7abff7672206ade4f55bdf461dd1788faf2321eccc9b53fe74c4e&",
+            "additional": "Drawn by @Eyux"
+          },
+          "!xarck": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223356248129278122/image.png?ex=66198e4a&is=6607194a&hm=372d0b0d2a862a7e132cc2ab1f960773196b64aa2c7783bc69848a4b0b2958a5&",
+            "additional": "Drawn by @Eyux"
+          },
+          "!hiena": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223068196731621507/image.png?ex=66188205&is=66060d05&hm=ada827d793a64490a42d24e67774d8080c14a43e4a8371cbf0cc1105564a869f&",
+            "additional": "Drawn by @Kaer"
+          },
+          "!castor": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223066510331875422/image.png?ex=66188073&is=66060b73&hm=123a782cb11dd3e1cc608850708bd9a12cf8057c7deaa8f968ef57fa7857ad1b&",
+            "additional": "Drawn by @Kaer"
+          },
+          "!chimpanze": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223346872614125720/image.png?ex=6619858f&is=6607108f&hm=4af40e7c70adede7e387e458c86fdb4c4797b521d9f1dbc6ed9faf0261a3d5ce&",
+            "additional": "Drawn by @Kaer"
+          },
+          "!cavalo": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223343397092196372/image.png?ex=66198252&is=66070d52&hm=169c81b48b3b53308c21f3cdc9abd6ba3fa4177ba02ca5a22726569a71d29e90&",
+            "additional": "Drawn by @Xarck"
+          },
+          "!bot": {
+            "message": "Vai tomar no seu cu"
+        
+          },
+          "!tiktok": {
+            "message": "Sai do tiktok seu vagabundo"
+          },
+          "!twitter": {
+            "message": "Printado e postado no twitter, vai ser cancelado"
+          },
+          "!rezar": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223811044682498229/image.png?ex=661b35da&is=6608c0da&hm=68ef04bce0cfeb94234b8e17cba0a8c48b8852d8fe99e0004f2cac934f788b85&",
+            "additional": "vamos rezar irmaos <3"
+          },
+          "!reza": {
+            "message": "https://cdn.discordapp.com/attachments/1222675817025372224/1223834427323449431/image.png?ex=661b4ba1&is=6608d6a1&hm=ae3421ed8b232ffa020fc23a4c9a09b0379e7cc42878bafab0ce1565fe0ea484&"
+          }
+    }
+}
