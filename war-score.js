@@ -33,7 +33,8 @@ export function updateWarPlacar(name, message) {
 
     data['players'].forEach(player => {
         if (player.name == name)  {
-        player.score += 1
+            player.score += 1
+            parseInt(player.score)
         }
     })
 
@@ -47,10 +48,10 @@ export function setWarScore(name, score, message) {
 
     data['players'].forEach(player => {
         if (player.name == name)  {
-            player.score = score
+            player.score = parseInt(score)
         }
     })
-    
+
     saveWarScore(data)
     
     printWarPlacar(message)

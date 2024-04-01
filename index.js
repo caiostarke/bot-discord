@@ -26,13 +26,15 @@ client.on('ready', (c) => {
   console.log(`✅ ${c.user.tag} is online.`);
 });
 
-client.on('messageCreate', (message) => {
+client.on('messageCreate', async (message) => {
   if (message.author.bot) {
     return;
   }
   const msg = message.content.toLowerCase();
 
-  if (message.author.displayName == "Kaer") {
+  const guildMember = await message.guild.members.fetch(message.author.id)
+
+  if (guildMember.guild.ownerId == message.author.id) {
     if (msg.startsWith("!update-war")) {
       const player = message.content.split(" ")[1]
       updateWarPlacar(player, message)
@@ -44,8 +46,8 @@ client.on('messageCreate', (message) => {
   
       setWarScore(player, score, message)
     }
-  
   }
+
 
   if (msg.startsWith("!placar-war")) {
     printWarPlacar(message)
