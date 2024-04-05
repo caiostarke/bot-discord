@@ -7,6 +7,7 @@ dotenv.config();
 const { Discord, Client, IntentsBitField } = discord
 
 import { printWarPlacar, updateWarPlacar, setWarScore } from './war-score.js';
+import { createSchedule, printSchedule, updateSchedule, destroySchedule, listSchedules } from './schedule.js';
 
 const rawData = fs.readFileSync('./data/commands.json', 'utf8');
 const commands = JSON.parse(rawData)
@@ -32,6 +33,46 @@ client.on('messageCreate', async (message) => {
   }
   const msg = message.content.toLowerCase();
 
+  if (message.member.roles.cache.some(role => role.name === "'-'")) {
+    if (msg.startsWith("!create-sched")) {
+      const name = message.content.split(" ")[1]
+      const date = message.content.split(" ")[2]
+  
+      const names = message.content.split(" ").slice(3)
+  
+      createSchedule(message, name, date, ...names)
+  
+      printSchedule(message, name)
+    }
+  
+    if(msg.startsWith("!update-sched")) {
+      const name = message.content.split(" ")[1]
+      const date = message.content.split(" ")[2]
+
+      const names = message.content.split(" ").slice(3)
+
+      if (names.length > 0) {
+        updateSchedule(message, name, date, ...names)
+      } else {
+        updateSchedule(message, name, date)
+      }
+    }
+
+      if(msg.startsWith("!destroy-sched")) {
+      const name = message.content.split(" ")[1]
+
+      if (name) {
+        destroySchedule(message, name)
+      }
+
+      message.reply("Schedule destroyed successfully!")
+    }
+
+    if(msg.startsWith("!list-sched")) {
+      listSchedules(message)
+    }
+  }
+
   const guildMember = await message.guild.members.fetch(message.author.id)
 
   if (guildMember.guild.ownerId == message.author.id) {
@@ -52,6 +93,14 @@ client.on('messageCreate', async (message) => {
   if (msg.startsWith("!placar-war")) {
     printWarPlacar(message)
   }
+
+
+  if(msg.startsWith("!print-sched")) {
+    const name = message.content.split(" ")[1]
+    
+    printSchedule(message, name)
+  }
+
 
 
   if (commands['commands'][msg]) {
