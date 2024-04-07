@@ -78,7 +78,18 @@ export const handlingSentMessages = async (message) => {
       printSchedule(message, name)
     }
   
-  
+    
+    if(msg.startsWith("!pau")) {
+      const cm = Math.floor(Math.random() * (30 - 0 + 1)) + 0;
+
+      const u = message.content.split(" ")[1]
+      if (u) {
+        message.reply(`${u} tem pauzin de ${cm}cm`)
+      } else {
+        message.reply(`${message.author.username} tem pauzin de ${cm}cm`)
+      }
+
+    }
   
     if (commands['commands'][msg]) {
       const { additional = "", message: msg2 } = commands['commands'][msg];
