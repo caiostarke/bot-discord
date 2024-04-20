@@ -2,6 +2,7 @@ import { printWarPlacar, updateWarPlacar, setWarScore } from './war-score.js';
 import { createSchedule, printSchedule, updateSchedule, destroySchedule, listSchedules } from './schedule.js';
 
 import { commands } from './index.js';
+import { Challenge, Response } from './english-challenges.js';
 
 export const handlingSentMessages = async (message) => {
     if (message.author.bot) {
@@ -88,7 +89,14 @@ export const handlingSentMessages = async (message) => {
       } else {
         message.reply(`${message.author.username} tem pauzin de ${cm}cm`)
       }
+    }
 
+    if (msg.startsWith("!challenge")) {
+      Challenge(message)
+    }
+
+    if (msg.startsWith("!response")) {
+      Response(message)
     }
   
     if (commands['commands'][msg]) {
@@ -107,5 +115,5 @@ export const handlingSentMessages = async (message) => {
   
       message.reply(msg);
     }
-  };
+};
   
