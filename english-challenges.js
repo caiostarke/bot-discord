@@ -22,10 +22,12 @@ export function Challenge(message) {
 
     const data = readData()
 
-    const RANDOM_ID = Math.floor(Math.random() * data.length);
+    const RANDOM_ID = Math.floor(Math.random() * (data['challenges'].length - 1 + 1) + 1);
+
+    console.log(RANDOM_ID)
 
     data['challenges'].forEach(challenge => {
-        if (!challenge.id == RANDOM_ID) {
+        if (challenge.id != RANDOM_ID) {
             return
         }
 
@@ -55,7 +57,7 @@ export function Response(message) {
     console.log(ID, RESPONSE)
 
     data['challenges'].forEach(challenge => {
-        if (!challenge.id == ID) {
+        if (challenge.id != ID) {
             return
         }
 
@@ -65,5 +67,4 @@ export function Response(message) {
             message.reply("Wrong")
         }
     })
-    
 }
