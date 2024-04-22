@@ -1,4 +1,6 @@
 import * as fs from 'fs';
+import { hasUserSentResponse } from './responses.js';
+import { HandleUser } from './user.js';
 
 const FILENAME = './data/challenges.json';
 
@@ -54,7 +56,7 @@ export function Response(message) {
     let ID = message.content.split(" ")[1]
     let RESPONSE = message.content.split(" ").slice(2).join(" ")
 
-    console.log(ID, RESPONSE)
+    const user = HandleUser(message.author.username, true)
 
     data['challenges'].forEach(challenge => {
         if (challenge.id != ID) {
