@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
-import { create } from 'domain';
 import * as fs from 'fs';
-import { hasUserSentResponse } from './responses';
+import { hasUserSentResponse, userSent } from './responses.js';
+import { log } from './logger.js';
 
 const FILENAME = './data/users.json';
 
@@ -47,13 +47,26 @@ export function getUserByName(username) {
     return user
 }
 
-export function HandleUser(name, isResponseCorect) {
+export function HandleUser(name, isResponseCorect, challengeID) {
+    const data = readData()
     const user = getUserByName(name)
 
-    if (isResponseCorect && !hasUserSentResponse(name)) {
-        user.exp += 1
-        user.level = Math.floor(user.exp / 10)
-    }
+    if (isResponseCorect) {
+        data.users.map((user) => {
+            if (user.username == name) {
+                user.exp += 1
+                user.level = Math.floor(user.exp / 10)
+            }
+        })
 
-    return user
+        saveData(data)
+    } 
+
+    userSent(name, challengeID)
+}
+
+function saveData(data) {
+    const updatedJSON = JSON.stringify(data);
+ 
+    fs.writeFileSync(FILENAME, updatedJSON, 'utf8');
 }

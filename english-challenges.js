@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import { hasUserSentResponse } from './responses.js';
 import { HandleUser } from './user.js';
+import { log } from './logger.js';
 
 const FILENAME = './data/challenges.json';
 
@@ -25,8 +26,6 @@ export function Challenge(message) {
     const data = readData()
 
     const RANDOM_ID = Math.floor(Math.random() * (data['challenges'].length - 1 + 1) + 1);
-
-    console.log(RANDOM_ID)
 
     data['challenges'].forEach(challenge => {
         if (challenge.id != RANDOM_ID) {
@@ -56,17 +55,26 @@ export function Response(message) {
     let ID = message.content.split(" ")[1]
     let RESPONSE = message.content.split(" ").slice(2).join(" ")
 
-    const user = HandleUser(message.author.username, true)
+    if (hasUserSentResponse(message.author.username, ID)) {
+        message.reply("You already sent a response D: Nice Try lil newbie.\n\nTry a new Challenge")
+        log("error", `User has sent a response ${message.author.username} ${ID} ${RESPONSE}`)
+        
+        return
+    }
 
-    data['challenges'].forEach(challenge => {
+    data.challenges.forEach(challenge => {
         if (challenge.id != ID) {
             return
         }
 
         if (challenge['correct-response'] == RESPONSE) {
+            HandleUser(message.author.username, true, ID)
             message.reply("Correct :D You got 1 exp")
+            return 
         } else {
-            message.reply("Wrong")
+            HandleUser(message.author.username, false, ID)
+            message.reply(`Wrong... The correct response is: ${challenge['correct-response']}, you got 0 exp`)
+            return
         }
     })
 }
