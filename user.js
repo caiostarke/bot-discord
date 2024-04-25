@@ -32,6 +32,7 @@ function createUser(username) {
     const updatedJsonUsers = JSON.stringify(data)
 
     fs.writeFileSync(FILENAME, updatedJsonUsers)
+    log("info", `User ${username} created`)
 }
 
 export function getUserByName(username) {
@@ -49,13 +50,14 @@ export function getUserByName(username) {
 
 export function HandleUser(name, isResponseCorect, challengeID) {
     const data = readData()
-    const user = getUserByName(name)
 
     if (isResponseCorect) {
         data.users.map((user) => {
             if (user.username == name) {
                 user.exp += 1
                 user.level = Math.floor(user.exp / 10)
+                
+                log("info", `User ${name} received 1 exp`)
             }
         })
 

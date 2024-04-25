@@ -45,8 +45,6 @@ export function Challenge(message) {
     })
 
     message.reply(msg)
-
-    console.log(msg)    
 }
 
 export function Response(message) {
@@ -69,10 +67,12 @@ export function Response(message) {
 
         if (challenge['correct-response'] == RESPONSE) {
             HandleUser(message.author.username, true, ID)
+            log("info", `User has sent a correct response ${message.author.username} ${ID} ${RESPONSE}`)
             message.reply("Correct :D You got 1 exp")
             return 
         } else {
             HandleUser(message.author.username, false, ID)
+            log("info", `User has sent a wrong response ${message.author.username} ${ID} ${RESPONSE}`)
             message.reply(`Wrong... The correct response is: ${challenge['correct-response']}, you got 0 exp`)
             return
         }

@@ -14,7 +14,6 @@ function saveData(data) {
     fs.writeFileSync(FILENAME, updatedJSON, 'utf8');
 }
 
-// FIX
 export function userSent(username, challengeID) {
     let data = readData()
     
@@ -32,7 +31,6 @@ export function userSent(username, challengeID) {
 export function hasUserSentResponse(username, challengeID) {
     const data = readData()
 
-    
     const relevantResponse = data.responses.find(response => response.challengeID == challengeID)
     
     if (!relevantResponse) {
