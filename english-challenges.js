@@ -27,22 +27,7 @@ export function Challenge(message) {
 
     const RANDOM_ID = Math.floor(Math.random() * (data['challenges'].length - 1 + 1) + 1);
 
-    data['challenges'].forEach(challenge => {
-        if (challenge.id != RANDOM_ID) {
-            return
-        }
-
-        if (challenge.type === "pick one") {
-            msg += `Pick the correct sentence:\n\n`
-            msg += `Usage example:\n\n`
-            msg += `Copy the sentence you think is correct and paste it after the ID\n`
-            msg += `!response ${challenge.id} ${challenge.options[0]}\n\n`
-
-            challenge.options.forEach(option => {
-                msg += `- ${option}\n`
-            })
-        }
-    })
+    msg = handleChallenge(data, msg, RANDOM_ID)
 
     message.reply(msg)
 }
@@ -78,3 +63,40 @@ export function Response(message) {
         }
     })
 }
+
+    function handleChallenge(data, msg, challengeID) {
+        data['challenges'].forEach(challenge => {
+
+            if (challenge.id != challengeID) {
+                return
+            }
+    
+            switch (challenge.type) {
+                case "pick one": 
+                    msg += `Pick the correct sentence:\n\n`
+                    msg += `Usage example:\n\n`
+                    msg += `Copy the sentence you think is correct and paste it after the ID\n`
+                    msg += `!response ${challenge.id} ${challenge.options[0]}\n\n`
+    
+                    challenge.options.forEach(option => {
+                        msg += `- ${option}\n`
+                    })
+                    break
+                
+                case "rewrite": 
+                    msg += `Rewrite the sentence correcting the errors:\n\n`
+                    msg += `Usage example:\n\n`
+                    msg += `Copy the sentence and correct it and paste it after the ID => ${challenge.id}\n\n`
+    
+                    msg += `My boss is being a lot older than me.\n`
+                    msg += `!response ${challenge.id} My boss is a lot older than me.\n\n`
+    
+                    msg += `BE AWARE. COPIE A SENTENCA AND MANTENHA A PONTUACAO.\n\n`
+    
+                    msg += `- ${challenge.option}`
+                    break
+            }
+        })
+
+        return msg
+    }
